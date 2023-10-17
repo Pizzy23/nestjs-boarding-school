@@ -1,11 +1,30 @@
-
 import { Injectable } from '@nestjs/common';
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsObject, IsString } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsArray, IsNumber, IsString } from 'class-validator';
 
 @Injectable()
-export class CiclesDto {
+export class PostCiclesDto {
   @ApiProperty()
   @IsString()
-  exemple: string;
+  title: string;
+
+  @ApiProperty()
+  @IsString()
+  description: string;
+}
+
+export class GetCiclesDto {
+  @ApiProperty()
+  @IsString()
+  query: string;
+
+  @ApiPropertyOptional()
+  @IsNumber()
+  page: number;
+}
+
+export class GetCiclesListDto {
+  @ApiProperty()
+  @IsArray()
+  cicles: PostCiclesDto[];
 }

@@ -1,11 +1,44 @@
-
 import { Injectable } from '@nestjs/common';
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsObject, IsString } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import {
+  IsArray,
+  IsLatitude,
+  IsLongitude,
+  IsNumber,
+  IsString,
+} from 'class-validator';
 
 @Injectable()
-export class HospitalsDto {
+export class PostHospitalsDto {
   @ApiProperty()
   @IsString()
-  exemple: string;
+  name: string;
+
+  @ApiProperty()
+  @IsString()
+  address: string;
+
+  @ApiProperty()
+  @IsLatitude()
+  latitude: number;
+
+  @ApiProperty()
+  @IsLongitude()
+  longitude: number;
+}
+
+export class GetHospitalsDto {
+  @ApiProperty()
+  @IsString()
+  query: string;
+
+  @ApiPropertyOptional()
+  @IsNumber()
+  page: number;
+}
+
+export class GetHospitalsListDto {
+  @ApiProperty()
+  @IsArray()
+  hospitals: PostHospitalsDto[];
 }

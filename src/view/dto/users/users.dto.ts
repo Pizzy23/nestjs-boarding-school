@@ -1,11 +1,48 @@
-
 import { Injectable } from '@nestjs/common';
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsObject, IsString } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsArray, IsNumber, IsObject, IsString } from 'class-validator';
 
 @Injectable()
-export class UsersDto {
+export class PostUsersDto {
   @ApiProperty()
   @IsString()
-  exemple: string;
+  name: string;
+
+  @ApiProperty()
+  @IsString()
+  email: string;
+
+  @ApiProperty()
+  @IsString()
+  password: string;
+
+  @ApiProperty()
+  @IsString()
+  confirmPassword: string;
+}
+
+export class PostSessionsDto {
+  @ApiProperty()
+  @IsString()
+  email: string;
+
+  @ApiProperty()
+  @IsString()
+  password: string;
+}
+
+export class GetUsersDto {
+  @ApiProperty()
+  @IsString()
+  query: string;
+
+  @ApiPropertyOptional()
+  @IsNumber()
+  page: number;
+}
+
+export class GetUsersListDto {
+  @ApiProperty()
+  @IsArray()
+  users: PostUsersDto[];
 }

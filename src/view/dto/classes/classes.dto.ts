@@ -1,11 +1,30 @@
-
 import { Injectable } from '@nestjs/common';
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsObject, IsString } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsArray, IsNumber, IsString } from 'class-validator';
 
 @Injectable()
-export class ClassesDto {
+export class PostClassesDto {
   @ApiProperty()
   @IsString()
-  exemple: string;
+  title: string;
+
+  @ApiProperty()
+  @IsString()
+  description: string;
+}
+
+export class GetClassesDto {
+  @ApiProperty()
+  @IsString()
+  query: string;
+
+  @ApiPropertyOptional()
+  @IsNumber()
+  page: number;
+}
+
+export class GetClassesListDto {
+  @ApiProperty()
+  @IsArray()
+  classes: PostClassesDto[];
 }
